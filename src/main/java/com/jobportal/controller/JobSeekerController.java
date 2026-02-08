@@ -1,10 +1,10 @@
 package com.jobportal.controller;
 
+import com.jobportal.security.SecurityUtil;
+import com.jobportal.service.UserService;
 import com.jobportal.dto.JobApplyResponse;
 import com.jobportal.model.User;
 import com.jobportal.repository.JobApplyRepository;
-import com.jobportal.security.SecurityUtil;
-import com.jobportal.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 

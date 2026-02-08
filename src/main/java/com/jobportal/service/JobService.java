@@ -1,6 +1,7 @@
 package com.jobportal.service;
 
 import com.jobportal.model.Job;
+
 import java.util.List;
 
 public interface JobService {

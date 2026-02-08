@@ -1,5 +1,6 @@
 package com.jobportal.security;
 
+import com.jobportal.security.JwtFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -46,12 +47,16 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
 
                         .requestMatchers(
-                                "/api/auth/**",
-                                "/h2-console/**"
-                        ).permitAll()
+                                "/api/auth/register",
+                                "/api/auth/login",
+                                "/h2-console/**",
 
-                        .requestMatchers("/api/job-seeker/**")
-                        .hasAuthority("ROLE_JOB_SEEKER")
+
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**",
+                                "/v3/api-docs.yaml"
+                        ).permitAll()
 
 
                         .requestMatchers("/api/jobs/*/apply")
@@ -64,14 +69,10 @@ public class SecurityConfig {
 
                         .anyRequest().authenticated()
                 )
-
-
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-
 
         http.headers(headers -> headers.frameOptions(frame -> frame.disable()));
 
         return http.build();
     }
-
 }

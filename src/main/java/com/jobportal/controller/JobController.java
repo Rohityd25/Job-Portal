@@ -3,7 +3,6 @@ package com.jobportal.controller;
 import com.jobportal.dto.JobResponse;
 import com.jobportal.model.Job;
 import com.jobportal.service.JobService;
-import lombok.Getter;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -1,15 +1,15 @@
 package com.jobportal.service.impl;
 
-import com.jobportal.model.Job;
+import com.jobportal.exception.DuplicateJobApplyException;
 import com.jobportal.model.JobApply;
-import com.jobportal.model.User;
 import com.jobportal.repository.JobApplyRepository;
 import com.jobportal.repository.JobRepository;
 import com.jobportal.security.SecurityUtil;
-import com.jobportal.service.JobApplyService;
 import com.jobportal.service.UserService;
+import com.jobportal.model.Job;
+import com.jobportal.model.User;
+import com.jobportal.service.JobApplyService;
 import org.springframework.stereotype.Service;
-import com.jobportal.exception.DuplicateJobApplyException;
 
 
 import java.time.LocalDateTime;
