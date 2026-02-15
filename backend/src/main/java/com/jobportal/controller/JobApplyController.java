@@ -21,18 +21,16 @@ public class JobApplyController {
 
     @PostMapping("/{jobId}/apply")
     @PreAuthorize("hasAuthority('ROLE_JOB_SEEKER')")
-    public JobApplyResponse applyJob(@PathVariable Long jobId) {
+    public JobApplyResponse applyJob(@PathVariable("jobId") Long jobId) {
 
         JobApply apply = jobApplyService.applyJob(jobId);
-
 
         return new JobApplyResponse(
                 apply.getId(),
                 apply.getJob().getId(),
                 apply.getJob().getTitle(),
                 apply.getJob().getCompany(),
-                apply.getAppliedAt()
-        );
+                apply.getAppliedAt());
     }
 
 }

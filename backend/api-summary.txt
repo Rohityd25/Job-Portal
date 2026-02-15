@@ -1,0 +1,16 @@
+1. Register Seeker
+PASS
+1b. Register Recruiter
+PASS
+2. Login Seeker
+PASS
+2b. Login Recruiter
+PASS
+3. Create Job
+PASS JobId:1
+4. Apply
+PASS
+5. View My Apps
+PASS Count:1
+6. View Recruiter Apps
+PASS Count:1

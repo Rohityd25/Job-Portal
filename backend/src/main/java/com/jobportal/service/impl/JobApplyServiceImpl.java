@@ -11,10 +11,12 @@ import com.jobportal.model.User;
 import com.jobportal.service.JobApplyService;
 import org.springframework.stereotype.Service;
 
-
 import java.time.LocalDateTime;
 
+import org.springframework.transaction.annotation.Transactional;
+
 @Service
+@Transactional
 public class JobApplyServiceImpl implements JobApplyService {
 
     private final JobApplyRepository jobApplyRepository;
@@ -24,8 +26,7 @@ public class JobApplyServiceImpl implements JobApplyService {
     public JobApplyServiceImpl(
             JobApplyRepository jobApplyRepository,
             JobRepository jobRepository,
-            UserService userService
-    ) {
+            UserService userService) {
         this.jobApplyRepository = jobApplyRepository;
         this.jobRepository = jobRepository;
         this.userService = userService;
@@ -42,8 +43,6 @@ public class JobApplyServiceImpl implements JobApplyService {
         Job job = jobRepository.findById(jobId)
                 .orElseThrow(() -> new RuntimeException("Job not found"));
 
-
-
         // 4️⃣ save application
         JobApply apply = new JobApply();
         apply.setUser(user);
@@ -51,10 +50,8 @@ public class JobApplyServiceImpl implements JobApplyService {
         apply.setAppliedAt(LocalDateTime.now());
         if (jobApplyRepository.existsByUserAndJob(user, job)) {
             throw new DuplicateJobApplyException(
-                    "You have already applied for this job"
-            );
+                    "You have already applied for this job");
         }
-
 
         return jobApplyRepository.save(apply);
     }

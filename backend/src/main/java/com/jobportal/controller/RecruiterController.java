@@ -23,8 +23,7 @@ public class RecruiterController {
     public RecruiterController(
             JobRepository jobRepository,
             JobApplyRepository jobApplyRepository,
-            UserService userService
-    ) {
+            UserService userService) {
         this.jobRepository = jobRepository;
         this.jobApplyRepository = jobApplyRepository;
         this.userService = userService;
@@ -34,15 +33,11 @@ public class RecruiterController {
     @GetMapping("/jobs")
     public List<Job> getRecruiterJobs() {
 
-
         String email = SecurityUtil.getCurrentUserEmail();
         User recruiter = userService.findByEmail(email);
 
-
         return jobRepository.findAll();
     }
-
-
 
     @PreAuthorize("hasAuthority('ROLE_RECRUITER')")
     @PostMapping("/jobs")
@@ -51,10 +46,9 @@ public class RecruiterController {
         return jobRepository.save(job);
     }
 
-
     @PreAuthorize("hasAuthority('ROLE_RECRUITER')")
     @GetMapping("/jobs/{jobId}/applications")
-    public List<JobApplyResponse> viewApplications(@PathVariable Long jobId) {
+    public List<JobApplyResponse> viewApplications(@PathVariable("jobId") Long jobId) {
 
         String email = SecurityUtil.getCurrentUserEmail();
         User recruiter = userService.findByEmail(email);
@@ -69,8 +63,7 @@ public class RecruiterController {
                         job.getId(),
                         job.getTitle(),
                         job.getCompany(),
-                        app.getAppliedAt()
-                ))
+                        app.getAppliedAt()))
                 .toList();
     }
 }
